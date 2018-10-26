@@ -1,0 +1,54 @@
+package com.example.rayold.everydayneeds.activities;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.rayold.everydayneeds.R;
+
+public class Login extends AppCompatActivity {
+
+    EditText emailUser,passwordLogin;
+    TextView register;
+    Button boutonLogin;
+    DatabaseHelper db;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        db = new DatabaseHelper(this);
+        emailUser= (EditText)findViewById(R.id.etEmailUser);
+        passwordLogin = (EditText)findViewById(R.id.etPassword);
+
+        register = (TextView)findViewById(R.id.tvRegisterLink);
+        boutonLogin = (Button)findViewById(R.id.bLogin);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Login.this, Register.class);
+                startActivity(i);
+            }
+        });
+        boutonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailUser.getText().toString();
+                String password = passwordLogin.getText().toString();
+                Boolean chkmailpass = db.emailpasword(email, password);
+                if (chkmailpass == true) {
+                    Toast.makeText(getApplicationContext(),"Successful login", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(Login.this, Activity_LoggedIn.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(),"Wrong email or password", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+}

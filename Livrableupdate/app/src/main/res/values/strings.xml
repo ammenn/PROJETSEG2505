@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Everyday needs</string>
+
+    <string-array name="names">
+        <item>--Choisir role--</item>
+        <item>Fournisseur</item>
+        <item>Administrateur</item>
+        <item>utilisateur</item>
+    </string-array>
+
+</resources>
