@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
 
-        super(context, "A3.db", null, 1);
+        super(context, "livrable3.db", null, 1);
 
     }
 
@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("Create table user(name text,email text primary key, password text,role text)");
         db.execSQL("Create table service(id integer  primary key,serviceName text, hourlyRate text)");
+        db.execSQL("Create table informationFournisseur(email text primary key,companyName text, phoneNumber text, address text, generalDescription text,licence text)");
 
     }
 
@@ -33,10 +34,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("drop table if exists user");
         db.execSQL("drop table if exists service");
+        db.execSQL("drop table if exists informationFournisseur");
 
     }
 
+    public boolean insertFournisseur(String company, String phone, String address, String description, String licence, String email) {
 
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("email", email);
+
+        contentValues.put("companyName", company);
+
+        contentValues.put("phoneNumber", phone);
+
+        contentValues.put("address", address);
+
+        contentValues.put("generalDescription", description);
+
+        contentValues.put("licence", licence);
+
+        long ins = db.insert("informationFournisseur", null, contentValues);
+
+        if (ins == -1)
+
+            return false;
+
+        else
+
+            return true;
+
+    }
 
 
     public boolean editService(String serviceName, String hourlyRate){
@@ -252,7 +282,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean isFournisseur(String email){
 
+        if(this.findSpecificFournisseur(email)!=null){
+
+            return true;
+
+        }
+
+        else
+
+            return false ;
+
+
+
+    }
 
     public User findSpecificAdmin(String email) {
 
@@ -281,8 +325,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
 
 
+    }
 
+    public User findSpecificFournisseur(String email) {
 
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("Select * from user where role=? and email=?", new String[]{"Fournisseur", email});
+
+        User user = new User();
+
+        if (cursor.moveToFirst()) {
+
+            user.setName(cursor.getString(0));
+
+            user.setRole(cursor.getString(2));
+
+            cursor.close();
+
+        } else {
+
+            user = null;
+
+        }
+
+        db.close();
+
+        return user;
 
     }
 }

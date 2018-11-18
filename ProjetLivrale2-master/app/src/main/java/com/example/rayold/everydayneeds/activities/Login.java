@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rayold.everydayneeds.Fournisseur;
 import com.example.rayold.everydayneeds.R;
 import com.example.rayold.everydayneeds.admin;
 
@@ -52,6 +53,10 @@ public class Login extends AppCompatActivity {
                     if(db.isAdministrator(email)==true){
                         Intent j = new Intent(Login.this, admin.class);
                         startActivity(j);
+                    }else if(db.isFournisseur(email)==true){
+                        Intent a = new Intent(Login.this, Fournisseur.class);
+                        a.putExtra("EMAIL", user.getEmail());
+                        startActivity(a);
                     }else{
                         startActivity(i);}
                 } else {

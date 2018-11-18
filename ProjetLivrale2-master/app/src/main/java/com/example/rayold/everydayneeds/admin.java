@@ -13,7 +13,7 @@ import com.example.rayold.everydayneeds.R;
 import com.example.rayold.everydayneeds.activities.DatabaseHelper;
 import com.example.rayold.everydayneeds.activities.Login;
 import com.example.rayold.everydayneeds.activities.Register;
-
+//fre
 public class admin extends AppCompatActivity {
     EditText service,hourlyRate;
     Button edit,add,delete;
