@@ -53,6 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("address", address);
 
         contentValues.put("generalDescription", description);
+<<<<<<< HEAD
 
         contentValues.put("licence", licence);
 
@@ -67,7 +68,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
 
     }
+=======
+>>>>>>> 0500f0dcf554baecf0108b2071c2c2bf8fe17cff
 
+        contentValues.put("licence", licence);
+
+        long ins = db.insert("informationFournisseur", null, contentValues);
+
+        if (ins == -1)
+
+            return false;
+
+        else
+
+            return true;
+
+    }
+ public boolean fournisseurHasPersonalInformation(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("Select * from informationFournisseur where email=?", new String[]{email});
+
+        if (cursor.getCount() > 0)
+
+            return false;
+
+        else
+
+            return true;
+    }
 
     public boolean editService(String serviceName, String hourlyRate){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -356,6 +385,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(this.findSpecificFournisseur(email)!=null){
 
             return true;
+<<<<<<< HEAD
+
+        }
+
+        else
+
+            return false ;
+=======
+>>>>>>> 0500f0dcf554baecf0108b2071c2c2bf8fe17cff
 
         }
 
@@ -363,6 +401,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             return false ;
 
+
+
+    }
 
 
     }
@@ -396,6 +437,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+<<<<<<< HEAD
     public Service findSpecificservice(String service) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -426,16 +468,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+=======
+>>>>>>> 0500f0dcf554baecf0108b2071c2c2bf8fe17cff
     public User findSpecificFournisseur(String email) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("Select * from user where role=? and email=?", new String[]{"Fournisseur", email});
+<<<<<<< HEAD
 
         User user = new User();
 
         if (cursor.moveToFirst()) {
 
+=======
+
+        User user = new User();
+
+        if (cursor.moveToFirst()) {
+
+>>>>>>> 0500f0dcf554baecf0108b2071c2c2bf8fe17cff
             user.setName(cursor.getString(0));
 
             user.setRole(cursor.getString(2));

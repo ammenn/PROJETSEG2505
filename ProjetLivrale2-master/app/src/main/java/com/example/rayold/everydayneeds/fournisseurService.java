@@ -1,5 +1,6 @@
 package com.example.rayold.everydayneeds;
 
+<<<<<<< HEAD
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,11 +18,18 @@ public class fournisseurService extends AppCompatActivity {
     private Integer[] imgid = {R.drawable.im1 ,R.drawable.im2 ,R.drawable.im3 ,R.drawable.im4 ,R.drawable.im5 ,R.drawable.im6 ,R.drawable.im7 ,R.drawable.im8 ,R.drawable.im9 ,R.drawable.im10 , } ;
     public String itemsstring ;
     DatabaseHelper db ;
+=======
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class fournisseurService extends AppCompatActivity {
+>>>>>>> 0500f0dcf554baecf0108b2071c2c2bf8fe17cff
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fournisseur_service);
+<<<<<<< HEAD
 
         list = (ListView) findViewById(R.id.listview) ;
         CustomListview customListview = new CustomListview(this , services , imgid) ;
@@ -40,6 +48,8 @@ public class fournisseurService extends AppCompatActivity {
                 }
             }
         });
+=======
+>>>>>>> 0500f0dcf554baecf0108b2071c2c2bf8fe17cff
     }
 
 

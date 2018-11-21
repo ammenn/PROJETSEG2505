@@ -9,8 +9,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rayold.everydayneeds.activities.DatabaseHelper;
+<<<<<<< HEAD
 
 
+=======
+import com.example.rayold.everydayneeds.activities.Login;
+import com.example.rayold.everydayneeds.activities.Register;
+//fre
+>>>>>>> 0500f0dcf554baecf0108b2071c2c2bf8fe17cff
 public class admin extends AppCompatActivity {
     EditText hourlyRate;
     TextView service ;
