@@ -1,6 +1,5 @@
 package com.example.rayold.everydayneeds;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.rayold.everydayneeds.R;
 import com.example.rayold.everydayneeds.activities.DatabaseHelper;
-import com.example.rayold.everydayneeds.activities.Login;
-import com.example.rayold.everydayneeds.activities.Register;
+
 
 public class admin extends AppCompatActivity {
-    EditText service,hourlyRate;
+    EditText hourlyRate;
+    TextView service ;
     Button edit,add,delete;
     DatabaseHelper db;
     @Override
@@ -23,8 +21,12 @@ public class admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+
         db = new DatabaseHelper(this);
-        service= (EditText)findViewById(R.id.editService);
+        String itemstring = getIntent().getStringExtra("A");
+        service= (TextView) findViewById(R.id.textView10);
+        service.setText(itemstring);
+
         hourlyRate = (EditText)findViewById(R.id.editHourlyPrice);
         edit = (Button)findViewById(R.id.buttonEdit);
         add = (Button)findViewById(R.id.buttonAdd);
@@ -44,7 +46,6 @@ public class admin extends AppCompatActivity {
                     Boolean insert = db.insertService(s1, s2);
                     if (insert == true) {
                         Toast.makeText(getApplicationContext(), "Service Adding Successful", Toast.LENGTH_SHORT).show();
-                        service.setText("");
                         hourlyRate.setText("");
                     } else {
                         Toast.makeText(getApplicationContext(), "Service Adding Failed", Toast.LENGTH_SHORT).show();
@@ -63,7 +64,6 @@ public class admin extends AppCompatActivity {
                     Boolean remove = db.deleteService(service.getText().toString(), hourlyRate.getText().toString());
                     if (remove == true) {
                         Toast.makeText(getApplicationContext(), "Service delete: Successful", Toast.LENGTH_SHORT).show();
-                        service.setText("");
                         hourlyRate.setText("");
                     } else {
                         Toast.makeText(getApplicationContext(), "Service delete: Failed", Toast.LENGTH_SHORT).show();
@@ -82,7 +82,6 @@ public class admin extends AppCompatActivity {
                     Boolean edit = db.editService(service.getText().toString(), hourlyRate.getText().toString());
                     if (edit == true) {
                         Toast.makeText(getApplicationContext(), "Service Edit: Successful", Toast.LENGTH_SHORT).show();
-                        service.setText("");
                         hourlyRate.setText("");
                     } else {
                         Toast.makeText(getApplicationContext(), "Service Edit: Failed, no match found", Toast.LENGTH_SHORT).show();

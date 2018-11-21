@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
 
-        super(context, "A3.db", null, 1);
+        super(context, "livrable3.db", null, 1);
 
     }
 
@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("Create table user(name text,email text primary key, password text,role text)");
         db.execSQL("Create table service(id integer  primary key,serviceName text, hourlyRate text)");
+        db.execSQL("Create table informationFournisseur(email text primary key,companyName text, phoneNumber text, address text, generalDescription text,licence text)");
 
     }
 
@@ -33,10 +34,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("drop table if exists user");
         db.execSQL("drop table if exists service");
+        db.execSQL("drop table if exists informationFournisseur");
 
     }
 
+    public boolean insertFournisseur(String company, String phone, String address, String description, String licence, String email) {
 
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("email", email);
+
+        contentValues.put("companyName", company);
+
+        contentValues.put("phoneNumber", phone);
+
+        contentValues.put("address", address);
+
+        contentValues.put("generalDescription", description);
+
+        contentValues.put("licence", licence);
+
+        long ins = db.insert("informationFournisseur", null, contentValues);
+
+        if (ins == -1)
+
+            return false;
+
+        else
+
+            return true;
+
+    }
 
 
     public boolean editService(String serviceName, String hourlyRate){
@@ -90,6 +120,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean insertServicefournisseur(String serviceName) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("serviceName", serviceName);
+
+        long ins = db.insert("service", null, contentValues);
+
+        if (ins == -1)
+
+            return false;
+
+        else
+
+            return true;
+
+    }
+
     public boolean deleteService(String serviceName, String hourlyRate){
         SQLiteDatabase db = this.getWritableDatabase();
         boolean result = false;
@@ -104,6 +154,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +"hourlyRate"
                 + " = \""
                 + hourlyRate
+                + "\""
+                ;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()){
+            String idStr = cursor.getString(0);
+            db.delete("service", "id" + " = " + idStr, null);
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean deleteServicefournisseur(String serviceName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = false;
+        String query = "SELECT * FROM "
+                + "service"
+                + " WHERE "
+                + "serviceName"
+                + " = \""
+                + serviceName
                 + "\""
                 ;
         Cursor cursor = db.rawQuery(query, null);
@@ -236,6 +309,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+   /* public Service findSpecificservice(String service) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "Select * FROM "
+                + "service"
+                + " WHERE "
+                + "seviceName"
+                + " = \""
+                + service
+                + "\"";
+        Cursor cursor = db.rawQuery(query,null);
+        Service services = new Service();
+        if (cursor.moveToFirst()) {
+            services.setService(cursor.getString(1));
+
+            cursor.close();
+        } else {
+            services = null;
+        }
+        db.close();
+        return services;
+
+
+    }*/
+
+
+
     public boolean isAdministrator(String email){
 
         if(this.findSpecificAdmin(email)!=null){
@@ -252,7 +351,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean isFournisseur(String email){
 
+        if(this.findSpecificFournisseur(email)!=null){
+
+            return true;
+
+        }
+
+        else
+
+            return false ;
+
+
+
+    }
 
     public User findSpecificAdmin(String email) {
 
@@ -281,8 +394,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
 
 
+    }
+
+    public Service findSpecificservice(String service) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("Select * from service where serviceName=? ", new String[]{service});
+
+        Service services = new Service();
+
+        if (cursor.moveToFirst()) {
+            services.setId(cursor.getInt(0));
+            services.setServiceName(cursor.getString(1));
+            services.setHourlyRate(cursor.getString(2));
 
 
+
+            cursor.close();
+
+        } else {
+
+            services = null;
+
+        }
+
+        db.close();
+
+        return services ;
+
+
+    }
+
+    public User findSpecificFournisseur(String email) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("Select * from user where role=? and email=?", new String[]{"Fournisseur", email});
+
+        User user = new User();
+
+        if (cursor.moveToFirst()) {
+
+            user.setName(cursor.getString(0));
+
+            user.setRole(cursor.getString(2));
+
+            cursor.close();
+
+        } else {
+
+            user = null;
+
+        }
+
+        db.close();
+
+        return user;
 
     }
 }

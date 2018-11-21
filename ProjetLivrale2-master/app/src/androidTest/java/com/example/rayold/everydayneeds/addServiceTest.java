@@ -2,8 +2,6 @@ package com.example.rayold.everydayneeds;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.example.rayold.everydayneeds.activities.Login;
-
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -28,7 +26,7 @@ public class addServiceTest {
         onView(withId(R.id.editHourlyPrice)).perform(typeText("100"), closeSoftKeyboard());
 
 
-        onView(withId(R.id.buttonAdd)).perform(click());
+        onView(withId(R.id.Add)).perform(click());
         onView(withText("Unsuccesfull add")).check(matches(isDisplayed()));
     }
 }

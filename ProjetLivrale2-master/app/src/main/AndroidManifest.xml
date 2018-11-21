@@ -16,16 +16,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Register"
+        <activity
+            android:name=".activities.Register"
             android:parentActivityName=".activities.Register">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.Login" />
         </activity>
         <activity android:name=".activities.Activity_LoggedIn" />
-
-        <activity android:name=".admin"></activity>
+        <activity android:name=".admin" />
+        <activity android:name=".Fournisseur" />
+        <activity android:name=".fournisseurService" />
+        <activity android:name=".adminservice" />
+        <activity android:name=".fournisseuroperation"></activity>
     </application>
 
 </manifest>
