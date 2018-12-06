@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:text="Booked Service"
+        android:textAlignment="center"
+        android:textColor="#c3c3"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/serviceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="323dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Service" />
+
+    <TextView
+        android:id="@+id/serviceCost"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="383dp"
+        android:layout_weight="1"
+        android:text="Cost" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginLeft="139dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:text="Book" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="81dp"
+        android:text="Fournisseur" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="146dp"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView18"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="215dp"
+        android:text=" Heure debut" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/serviceCost"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-4dp"
+        android:layout_marginTop="274dp"
+        android:text="Heure Fin" />
+
+    <TextView
+        android:id="@+id/etEmailFournisseur"
+        android:layout_width="362dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/textView20"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="103dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/etJourDisponible"
+        android:layout_width="362dp"
+        android:layout_height="29dp"
+        android:layout_below="@+id/textView18"
+        android:layout_alignStart="@+id/textView18"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/etHeureDebut"
+        android:layout_width="355dp"
+        android:layout_height="31dp"
+        android:layout_below="@+id/textView19"
+        android:layout_alignStart="@+id/serviceCost"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/etHeureFin"
+        android:layout_width="346dp"
+        android:layout_height="29dp"
+        android:layout_below="@+id/textView20"
+        android:layout_alignStart="@+id/serviceName"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="-1dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/etService"
+        android:layout_width="344dp"
+        android:layout_height="33dp"
+        android:layout_below="@+id/serviceCost"
+        android:layout_alignStart="@+id/serviceName"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="-53dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/etCost"
+        android:layout_width="358dp"
+        android:layout_height="36dp"
+        android:layout_below="@+id/serviceCost"
+        android:layout_alignEnd="@+id/serviceCost"
+        android:layout_marginEnd="-302dp"
+        android:text="TextView" />
+</RelativeLayout>
